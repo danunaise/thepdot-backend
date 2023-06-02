@@ -4,12 +4,11 @@ import { AuthDto } from './dto/auth.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { jwtSecret } from './utils/constants';
-import { signinDto } from './dto/signin.dto';
 import { Request, Response } from 'express';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma: PrismaService, private jwt: JwtService) { }
+  constructor(private prisma: PrismaService, private jwt: JwtService) {}
 
   async signup(dto: AuthDto) {
     const { email, username, password } = dto;
@@ -71,6 +70,5 @@ export class AuthService {
       expiresIn: '10s',
     });
     return token;
-    //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsImlhdCI6MTY4NTY0NDIxMywiZXhwIjoxNjg1NzMwNjEzfQ.lw2SQpwjbMp3mWwDu-hqXhS1y0zLrq1aSK1kWCrus_Y
   }
 }
